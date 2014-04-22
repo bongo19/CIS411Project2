@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace GameVoteSolution.Controllers
 {
@@ -10,6 +11,10 @@ namespace GameVoteSolution.Controllers
     {
         public ActionResult Index()
         {
+            //string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "home", });
+            //ViewBag.ApiUrl = new Uri(Request.Url, apiUri).AbsoluteUri.ToString();
+            ViewBag.Message = "Home Page";
+
             return View();
         }
 
