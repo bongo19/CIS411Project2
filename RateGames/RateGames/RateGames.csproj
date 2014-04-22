@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -182,12 +184,41 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Game.cs">
+      <DependentUpon>RateGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameDTO.cs" />
+    <Compile Include="Models\RateGameModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RateGameModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RateGameModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RateGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RateGameModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RateGameModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>RateGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vote.cs">
+      <DependentUpon>RateGameModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VoteDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +278,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\RateGameModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RateGameModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RateGameModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RateGameModel.edmx</DependentUpon>
+      <LastGenOutput>RateGameModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RateGameModel.edmx.diagram">
+      <DependentUpon>RateGameModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\RateGameModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RateGameModel.edmx</DependentUpon>
+      <LastGenOutput>RateGameModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -301,12 +349,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
