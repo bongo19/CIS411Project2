@@ -1,0 +1,42 @@
+﻿@model GameVoteSolution.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gameTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gameTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gamePic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gamePic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gameQuote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gameQuote)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.gameID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
