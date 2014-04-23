@@ -494,7 +494,7 @@
              The ID of the Spot
              </param>
         </member>
-        <member name="M:MeetUs.Controllers.Api.SpotController.Edit(System.Int32,MeetUs.Models.Spot)">
+        <member name="M:MeetUs.Controllers.Api.SpotController.Edit(System.Int32,MeetUs.Models.SpotEditRequest)">
             <summary>
              Edits spot
              </summary>
@@ -504,10 +504,11 @@
              User Joins Spot
              </summary>
         </member>
-        <member name="M:MeetUs.Controllers.Api.SpotController.Create(MeetUs.Models.Spot)">
+        <member name="M:MeetUs.Controllers.Api.SpotController.Create(MeetUs.Models.SpotCreateRequest)">
             <summary>
              Create Spot
              </summary>
+             <param name="request">The spot request</param>
         </member>
         <member name="M:MeetUs.Controllers.Api.SpotController.Delete(System.Int32)">
             <summary>

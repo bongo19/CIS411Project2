@@ -15,13 +15,13 @@
 
         @Html.HiddenFor(model => model.SpotId)
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
@@ -31,13 +31,13 @@
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.DateAdded)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.DateAdded)
             @Html.ValidationMessageFor(model => model.DateAdded)
-        </div>
+        </div>*@
 
         <p>
             <input type="submit" value="Save" />

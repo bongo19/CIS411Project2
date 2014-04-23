@@ -35,7 +35,7 @@ namespace MeetUs.Controllers.Api
         /// </param>
         // GET api/Spot/Details/5
         [HttpGet]//Specify that it's a get
-        public Spot Details(int id)
+        public SpotDetailsResponse Details(int id)
         {
             Spot spot = db.Spots.Find(id);
             if (spot == null)
@@ -43,7 +43,12 @@ namespace MeetUs.Controllers.Api
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return spot;
+            SpotDetailsResponse response = new SpotDetailsResponse();
+            string fbData = "this would be the documentation for a FB like button";
+            response.FbLikeButtonData = fbData;
+            response.Spot = spot;
+
+            return response;
         }
 
         ///<summary>
@@ -52,12 +57,16 @@ namespace MeetUs.Controllers.Api
         // PUT api/Spot/Edit/5
         [Authorize(Roles = "Administrator")]
         [HttpPut]//Specify that it's a put
-        public HttpResponseMessage Edit(int id, Spot spot)
+        public HttpResponseMessage Edit(int id, SpotEditRequest request)
         {
+            Spot spot = new Spot();
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
+
+            spot = db.Spots.Find(request.SpotId);
+            spot.Description = request.Description;
 
             if (id != spot.SpotId)
             {
@@ -123,12 +132,20 @@ namespace MeetUs.Controllers.Api
         ///<summary>
         /// Create Spot
         /// </summary>
+        /// <param name="request">The spot request</param>
         // POST api/Spot/Create
         [HttpPost]//Specify it's a post
-        public HttpResponseMessage Create(Spot spot)
+        public HttpResponseMessage Create(SpotCreateRequest request)
         {
+
+
             if (ModelState.IsValid)
             {
+                var spot = new Spot();
+                spot.Name = request.Name;
+                spot.Description = request.Description;
+                spot.DateAdded = DateTime.Now;
+
                 db.Spots.Add(spot);
                 db.SaveChanges();
 

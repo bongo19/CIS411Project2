@@ -33,7 +33,13 @@ namespace MeetUs.Controllers
             {
                 return HttpNotFound();
             }
-            return View(spot);
+
+            string fbData = "You can find this info in the FB documentation.";
+            SpotDetailsResponse response = new SpotDetailsResponse();
+            response.FbLikeButtonData = fbData;
+            response.Spot = spot;
+
+            return View(response);
         }
 
         //
@@ -49,10 +55,15 @@ namespace MeetUs.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Spot spot)
+        public ActionResult Create(SpotCreateRequest request)
         {
+            Spot spot = new Spot();
             if (ModelState.IsValid)
             {
+                
+                spot.Name = request.Name;
+                spot.Description = request.Description;
+
                 spot.DateAdded = DateTime.Now;
                 db.Spots.Add(spot);
                 db.SaveChanges();
@@ -97,10 +108,14 @@ namespace MeetUs.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Spot spot)
+        public ActionResult Edit(SpotEditRequest request)
         {
+            Spot spot = new Spot();
             if (ModelState.IsValid)
             {
+                //Find spot that matches request
+                spot = db.Spots.Find(request.SpotId);
+                spot.Description = request.Description;
                 db.Entry(spot).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

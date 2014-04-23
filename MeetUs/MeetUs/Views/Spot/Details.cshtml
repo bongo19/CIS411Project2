@@ -1,4 +1,4 @@
-﻿@model MeetUs.Models.Spot
+﻿@model MeetUs.Models.SpotDetailsResponse
 
 @{
     ViewBag.Title = "Details";
@@ -10,39 +10,42 @@
     <legend>Spot</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+         @Html.DisplayNameFor(model => model.Spot.Name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+        @Html.DisplayFor(model => model.Spot.Name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
+         @Html.DisplayNameFor(model => model.Spot.Description)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+        @Html.DisplayFor(model => model.Spot.Description)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.DateAdded)
+         @Html.DisplayNameFor(model => model.Spot.DateAdded)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.DateAdded)
+        @Html.DisplayFor(model => model.Spot.DateAdded)
     </div>
     
+    @*Facebook like button data in a response*@
+    <p>@Model.FbLikeButtonData</p>
+
     <h5>Spot Lovers</h5>
     <ul>
-        @foreach (var userProfile in Model.UserProfiles)
+        @foreach (var userProfile in Model.Spot.UserProfiles)
         {
             <li>@userProfile.UserName</li>
         }
     </ul>
 </fieldset>
 <p>
-    @Html.ActionLink("Join", "Join", new { id = Model.SpotId }) |
+    @Html.ActionLink("Join", "Join", new { id = Model.Spot.SpotId }) |
     @Html.ActionLink("Back to List", "Index") 
     @if(User.IsInRole("Administrator"))
     {
-        @Html.ActionLink("Edit", "Edit", new {id = Model.SpotId})
+        @Html.ActionLink("Edit", "Edit", new {id = Model.Spot.SpotId})
     }
 </p>
