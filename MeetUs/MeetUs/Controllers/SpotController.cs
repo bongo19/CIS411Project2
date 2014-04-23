@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,6 +61,23 @@ namespace MeetUs.Controllers
 
             return View(spot);
         }
+
+        //
+        // GET: /Spot/Join/5
+
+        public ActionResult Join(int id = 0)
+        {
+            Spot spot = db.Spots.Find(id);
+            if (spot == null)
+            {
+                return HttpNotFound();
+            }
+            var userProfile = db.UserProfiles.Where(user => user.UserName == User.Identity.Name).Single();
+            spot.UserProfiles.Add(userProfile);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         //
         // GET: /Spot/Edit/5

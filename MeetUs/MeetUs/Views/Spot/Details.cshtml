@@ -29,8 +29,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.DateAdded)
     </div>
+    
+    <h5>Spot Lovers</h5>
+    <ul>
+        @foreach (var userProfile in Model.UserProfiles)
+        {
+            <li>@userProfile.UserName</li>
+        }
+    </ul>
 </fieldset>
 <p>
+    @Html.ActionLink("Join", "Join", new { id = Model.SpotId }) |
     @Html.ActionLink("Edit", "Edit", new { id=Model.SpotId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

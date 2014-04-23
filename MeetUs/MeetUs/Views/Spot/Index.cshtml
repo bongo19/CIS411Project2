@@ -35,6 +35,7 @@
             @Html.DisplayFor(modelItem => item.DateAdded)
         </td>
         <td>
+            @Html.ActionLink("Join", "Join", new { id = item.SpotId }) |
             @Html.ActionLink("Edit", "Edit", new { id=item.SpotId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SpotId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SpotId })
