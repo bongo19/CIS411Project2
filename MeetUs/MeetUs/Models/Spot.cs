@@ -24,7 +24,7 @@ namespace MeetUs.Models
 
     }
 
-
+    //Deals with edit api vulnerability
     public class SpotEditRequest
     {
         public int SpotId { get; set; }
@@ -32,6 +32,7 @@ namespace MeetUs.Models
 
     }
 
+    //Deals with Details Response (Facebook)
     public class SpotDetailsResponse
     {
         public  Spot Spot { get; set; }
