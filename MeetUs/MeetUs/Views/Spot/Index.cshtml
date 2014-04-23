@@ -6,14 +6,14 @@
 
 <h2>Hot Spots</h2>
 
-<button type="button" class="btn btn-primary">
+<button type="button" class="btn btn-default">
     @Html.ActionLink("Create New", "Create")
 </button>
     <div class="panel panel-default">
         <div class="panel-heading">Panel heading</div>
         <div class="panel-body">
             <table>
-                <tr>
+                <tr style="padding: 10px">
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
@@ -28,7 +28,7 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr style="padding: 10px">
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
