@@ -17,14 +17,25 @@ namespace MeetUs.Controllers.Api
     {
         private DataContext db = new DataContext();
 
+        ///<summary>
+        /// Gets all Spots
+        /// </summary>
         // GET api/Spot
-        public IEnumerable<Spot> GetSpots()
+        [HttpGet]//Specify it's a get
+        public IEnumerable<Spot> Index()
         {
             return db.Spots.AsEnumerable();
         }
 
-        // GET api/Spot/5
-        public Spot GetSpot(int id)
+        ///<summary>
+        /// Gets a spot
+        /// </summary>
+        /// <param name="id">
+        /// The ID of the Spot
+        /// </param>
+        // GET api/Spot/Details/5
+        [HttpGet]//Specify that it's a get
+        public Spot Details(int id)
         {
             Spot spot = db.Spots.Find(id);
             if (spot == null)
@@ -35,8 +46,12 @@ namespace MeetUs.Controllers.Api
             return spot;
         }
 
-        // PUT api/Spot/5
-        public HttpResponseMessage PutSpot(int id, Spot spot)
+        ///<summary>
+        /// Edits spot
+        /// </summary>
+        // PUT api/Spot/Edit/5
+        [HttpPut]//Specify that it's a put
+        public HttpResponseMessage Edit(int id, Spot spot)
         {
             if (!ModelState.IsValid)
             {
@@ -62,8 +77,54 @@ namespace MeetUs.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/Spot
-        public HttpResponseMessage PostSpot(Spot spot)
+
+        ///<summary>
+        /// User Joins Spot
+        /// </summary>
+        // PUT api/Spot/Join/5
+        [HttpPut]//Specify that it's a put
+        public HttpResponseMessage Join(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            Spot spot = db.Spots.Find(id);
+            if (spot == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+            var userProfile = db.UserProfiles.Where(user => user.UserName == User.Identity.Name).Single();
+            spot.UserProfiles.Add(userProfile);
+
+            db.Entry(spot).State = EntityState.Modified;
+
+            if (id != spot.SpotId)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            db.Entry(spot).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        ///<summary>
+        /// Create Spot
+        /// </summary>
+        // POST api/Spot/Create
+        [HttpPost]//Specify it's a post
+        public HttpResponseMessage Create(Spot spot)
         {
             if (ModelState.IsValid)
             {
@@ -80,8 +141,13 @@ namespace MeetUs.Controllers.Api
             }
         }
 
-        // DELETE api/Spot/5
-        public HttpResponseMessage DeleteSpot(int id)
+
+        ///<summary>
+        /// Delete Spot
+        /// </summary>
+        // DELETE api/Spot/Delete/5
+        [HttpDelete]//Specify it's a delete
+        public HttpResponseMessage Delete(int id)
         {
             Spot spot = db.Spots.Find(id);
             if (spot == null)
