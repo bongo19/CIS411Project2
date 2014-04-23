@@ -81,7 +81,7 @@ namespace MeetUs.Controllers
 
         //
         // GET: /Spot/Edit/5
-
+        [Authorize(Roles="Administrator")]
         public ActionResult Edit(int id = 0)
         {
             Spot spot = db.Spots.Find(id);
@@ -94,7 +94,7 @@ namespace MeetUs.Controllers
 
         //
         // POST: /Spot/Edit/5
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Spot spot)
@@ -110,7 +110,7 @@ namespace MeetUs.Controllers
 
         //
         // GET: /Spot/Delete/5
-
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id = 0)
         {
             Spot spot = db.Spots.Find(id);
@@ -123,7 +123,7 @@ namespace MeetUs.Controllers
 
         //
         // POST: /Spot/Delete/5
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

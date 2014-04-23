@@ -50,6 +50,7 @@ namespace MeetUs.Controllers.Api
         /// Edits spot
         /// </summary>
         // PUT api/Spot/Edit/5
+        [Authorize(Roles = "Administrator")]
         [HttpPut]//Specify that it's a put
         public HttpResponseMessage Edit(int id, Spot spot)
         {
@@ -146,6 +147,7 @@ namespace MeetUs.Controllers.Api
         /// Delete Spot
         /// </summary>
         // DELETE api/Spot/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpDelete]//Specify it's a delete
         public HttpResponseMessage Delete(int id)
         {

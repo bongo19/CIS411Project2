@@ -1,0 +1,20 @@
+﻿@using MeetUs.Models
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MeetUs
+{
+	public class _AppStart
+{
+    @{
+        if (!WebSecurity.Initialized)
+        {
+            //Web Security DB initialization code to Authorize Edit and Deletion of Spots
+            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId",
+                                                        "UserName", autoCreateTables: true);
+        }
+    }
+}
+}
