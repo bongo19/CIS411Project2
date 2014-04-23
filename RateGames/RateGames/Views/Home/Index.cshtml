@@ -11,7 +11,7 @@
             var self = this;
 
             self.games = ko.observableArray();
-            self.votes = ko.observableArray();
+            self.voteList = ko.observableArray();
 
 
             function GameViewModel(root, game) {
@@ -21,38 +21,16 @@
                 self.Picture = game.gamePic;
                 self.Quote = game.gameQuote;
 
+                self.votePostItemToList = function() {
+                    root.voteList.push(self);
+                };
+
 
             }
-
-            function VoteViewModel(root, vote) {
-
-                var self = this;
-                self.VoteID = vote.VoteID;
-                self.gameID = vote.gameID;
-                self.win = vote.observable(0);
-            
-
-            self.votePostItem = function() {
-                var vtn = self.win();
-                if (vtn == 0) {
-                    root.cart.push(self);
-
-                }
-                self.win(vtn + 1);
-            };
-
-            }
-
 
             $.getJSON("/api/games", function(games) {
                 $.each(games, function(index, game) {
                     self.games.push(new GameViewModel(self, game));
-                })
-            });
-
-            $.getJSON("/api/votes", function(votes) {
-                $.each(votes, function(index, vote) {
-                    self.votes.push(new VoteViewModel(self, vote));
                 })
             });
 
@@ -67,11 +45,12 @@
 
 }
 
+
 <div class="content">
     <!-- List of games -->
     <div class="float-left">
         <h1>Game</h1>
-        <ul id="games" data-bind="foreach: games"></ul>
+        <ul id="games" data-bind="foreach: games">
         <li>
             <div>
                 <span data-bind="text: Title"></span>
@@ -79,22 +58,23 @@
                 <span data-bind="text: Quote"></span>
             </div>
             <div>
-                <button data-bind="click: votePostItem">Vote!</button>
+                <button data-bind="click: votePostItemToList">Vote</button>
             </div>
         </li>
+        </ul>
     </div>
-    <div id="cart" class="float-right" data-bind="visible: cart().length > 0">
+    <div id="voteList" class="float-right" data-bind="visible: voteList().length > 0">
         <h1>Voted</h1>
         <table class="details ui-widget-content">
             <thead>
                 <tr><td>Game</td><td>Picture</td><td>Quote</td></tr>
             </thead>
-            <tbody data-bind="foreach: cart">
+            <tbody data-bind="foreach: voteList">
                 <tr>
                     <td><span data-bind="text: $data.Title"></span></td>
                     <td><span data-bind="text: $data.Picture"></span></td>
                     <td><span data-bind="text: $data.Quote"></span></td>
-                    <td><span data-bind="text: $data.win()"></span></td>
+                   @* <td><span data-bind="text: $data.win()"></span></td>*@
                 </tr>
             </tbody>
         </table>

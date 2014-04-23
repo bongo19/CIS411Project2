@@ -50,6 +50,8 @@ mark {
     float: right;
 }
 
+
+
 .clear-fix:after {
     content: ".";
     clear: both;
@@ -89,6 +91,63 @@ h5, h6 {
         padding: 0;
         text-decoration: none;
     }
+
+    .content {
+    clear: both;
+    width: 90%;
+}
+
+li {
+    list-style-type: none;
+}
+        
+#games li {
+    width: 300px;
+    background-color: #aaf;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff0;
+    margin: 0 0 5px 0;
+    padding: 0 5px 0 5px;
+}
+        
+.price  {
+    float: right;
+    color: #c00;
+    font-size: 0.75em;
+}
+        
+.details thead td {
+    background-color: #CCCCCC;
+    color: #333333;
+}
+
+.details td {
+	padding: 6px;
+}
+        
+.details td.qty {
+	text-align: center;
+}       
+        
+#voteList a {
+	color: Blue;
+	font-size: .75em;
+} 
+        
+#update-games li { 
+    padding: 5px; 
+    color: #666;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #666;
+}
+
+#update-games li .item {
+	width: 120px;
+	display: inline-block;
+	text-align: right;
+}      
 
 
 /* main layout
