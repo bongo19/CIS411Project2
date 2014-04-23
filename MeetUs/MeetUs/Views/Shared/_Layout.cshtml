@@ -5,43 +5,52 @@
         <title>@ViewBag.Title - Meet Us</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @RenderSection("scripts", required: false)
     </head>
     <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Meet Us", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Spots", "Index", "Spot")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Meet Us</p>
-                </div>
-            </div>
-        </footer>
+        <div class="row clearfix">
+            <div class="col-md-12 column" style="padding: 40px">
+                <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">MEET US</a>
+                    </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Spots", "Index", "Spot")
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                @Html.Partial("_LoginPartial")
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+                <h2 class="text-center">
+                    MEET US
+                </h2>
+                <h3 class="text-center">
+                    We'll meet you at your favorite spot!
+                </h3>
+                <div class="alert alert-dismissable alert-info text-center">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>HOW TO MEET US:</strong> Add a spot to your list of favorite hangouts. Meet other users who visit the same spot - mingle!
+
+                </div>
+                @RenderBody()
+            </div>
+            </div>
+
+
+</body>
 </html>
