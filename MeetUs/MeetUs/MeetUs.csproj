@@ -222,22 +222,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201404231436397_InitialMigration.cs" />
-    <Compile Include="Migrations\201404231436397_InitialMigration.Designer.cs">
-      <DependentUpon>201404231436397_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404231454314_AddSpot.cs" />
-    <Compile Include="Migrations\201404231454314_AddSpot.Designer.cs">
-      <DependentUpon>201404231454314_AddSpot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404231500334_AddUsersToSpot.cs" />
-    <Compile Include="Migrations\201404231500334_AddUsersToSpot.Designer.cs">
-      <DependentUpon>201404231500334_AddUsersToSpot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404231505201_AddSpotsToUser.cs" />
-    <Compile Include="Migrations\201404231505201_AddSpotsToUser.Designer.cs">
-      <DependentUpon>201404231505201_AddSpotsToUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Spot.cs" />
@@ -387,20 +371,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404231436397_InitialMigration.resx">
-      <DependentUpon>201404231436397_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404231454314_AddSpot.resx">
-      <DependentUpon>201404231454314_AddSpot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404231500334_AddUsersToSpot.resx">
-      <DependentUpon>201404231500334_AddUsersToSpot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404231505201_AddSpotsToUser.resx">
-      <DependentUpon>201404231505201_AddSpotsToUser.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
